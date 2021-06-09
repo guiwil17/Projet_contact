@@ -16,9 +16,11 @@ import java.util.List;
 @SessionAttributes("valueSession2")
 public class ContactController {
 
+    @Autowired
+    private OptionContact contactRepo;
     @GetMapping("/contact")
     public String contact(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue = "hello") String fooCookie, HttpServletResponse response) {
-        model.addAttribute("name", name);
+        model.addAttribute("name", contactRepo.findById(1));
         return "contact";
     }
 }

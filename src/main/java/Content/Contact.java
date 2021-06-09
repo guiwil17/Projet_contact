@@ -24,7 +24,7 @@ public class Contact {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
+                "Contact[id=%d, firstName='%s', lastName='%s']",
                 id, firstName, lastName);
     }
 
