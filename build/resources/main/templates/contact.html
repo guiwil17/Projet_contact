@@ -39,8 +39,9 @@
     <thead>
     <tr>
         <th th:text="Id" scope="col" class="text-center"></th>
-        <th th:text="Nom" scope="col" class="text-center"></th>
         <th th:text="Prénom" scope="col" class="text-center"></th>
+        <th th:text="Nom" scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
         <th scope="col" class="text-center"></th>
     </tr>
     </thead>
@@ -49,18 +50,20 @@
         <th th:text="${e.getId()}" scope="row" class="text-center"></th>
         <td  th:text="${e.getFirstName()}" class="text-center"></td>
         <td th:text="${e.getLastName()}" class="text-center"></td>
-        <td class="text-center">
+        <td class="text-center col-md-1">
             <form action="#" th:action="@{/Modifcontact}" th:object="${contact}" method="post">
                 <input name="id" type="hidden" th:value="${e.getId()}">
                 <input name="firstName" type="hidden" th:value="${e.getFirstName()}" >
                 <input name="lastName" type="hidden" th:value="${e.getLastName()}">
                 <button type="submit" class="btn btn-primary">Modifier</button>
             </form>
+        </td>
+        <td class="text-center col-md-1">
             <form action="#" th:action="@{/Deletecontact}" th:object="${contact}" method="get">
                 <input name="id" type="hidden" th:value="${e.getId()}">
                 <input name="firstName" type="hidden" th:value="${e.getFirstName()}" >
                 <input name="lastName" type="hidden" th:value="${e.getLastName()}">
-            <button type="submit" class="btn btn-danger">Supprimer</button>
+                <button type="submit" class="btn btn-danger">Supprimer</button>
             </form>
         </td>
     </tr>

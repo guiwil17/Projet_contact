@@ -8,24 +8,28 @@
 
 </head>
 <body>
-<h1 th:text="'Mise à jour de' + ${contact.getId()}" class="text-center mb-4"></h1>
+<h1 th:text="'Mise à jour de ' + ${contact.getFirstName()}" class="text-center mb-5"></h1>
 
-<div class="container">
-    <div class="row">
+<div class="container mt-5">
         <form  th:action="@{/contact}" th:object="${modifcontact}" method="post">
-            <input name="id" type="hidden" th:value="${contact.getId()}">
-            <div class="form-group">
+            <div class="row">
+                <input name="id" type="hidden" th:value="${contact.getId()}">
+
+                <div class="col">
                 <label for="exampleInputEmail1">Prénom</label>
                 <input name="firstName" type="text" class="form-control" th:value="${contact.getFirstName()}">
             </div>
-            <div class="form-group">
+                    <div class="col">
                 <label for="exampleInputPassword1">Nom</label>
                 <input name="lastName" type="text"  class="form-control" placeholder="Nom de famille" th:value="${contact.getLastName()}">
             </div>
+            </div>
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary text-center mt-4 mb-4">Modifier</button>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Modifier</button>
+
         </form>
-    </div>
 </div>
 
 </body>
