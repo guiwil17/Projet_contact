@@ -21,6 +21,13 @@ public class Contact {
         this.lastName = lastName;
     }
 
+/*
+    public Contact(Long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+*/
     @Override
     public String toString() {
         return String.format(
@@ -38,5 +45,17 @@ public class Contact {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }
