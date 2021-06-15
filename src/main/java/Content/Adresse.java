@@ -10,23 +10,23 @@ public class Adresse {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    private String Adresse;
-    private String Code_postale;
-    private String Ville;
+    private String ligne;
+    private String code_postale;
+    private String ville;
 
     protected Adresse() {}
 
-    public Adresse(String Adresse, String Code_postale, String Ville) {
-        this.Adresse = Adresse;
-        this.Code_postale = Code_postale;
-        this.Ville = Ville;
+    public Adresse(String ligne, String code_postale, String ville) {
+        this.ligne = ligne;
+        this.code_postale = code_postale;
+        this.ville = ville;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, Adresse='%s', Code_postale='%s', Ville='%s']",
-                id, Adresse, Code_postale, Ville);
+                "Adresse[id=%d, Adresse='%s', Code_postale='%s', Ville='%s']",
+                id, ligne, code_postale, ville);
     }
 
     public Long getId() {
@@ -34,14 +34,14 @@ public class Adresse {
     }
 
     public String getAdresse() {
-        return Adresse;
+        return ligne;
     }
 
     public String getCode_postale() {
-        return Code_postale;
+        return code_postale;
     }
 
     public String getVille() {
-        return Ville;
+        return ville;
     }
 }

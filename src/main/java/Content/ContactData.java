@@ -17,7 +17,7 @@ public class ContactData {
     }
 
     @Bean
-    public CommandLineRunner demo(OptionContact contact) {
+    public CommandLineRunner demo(OptionContact contact, OptionAdresse adresse) {
         return (args) -> {
             // save a few customers
 
@@ -27,6 +27,12 @@ public class ContactData {
             contact.save(new Contact("David", "Palmer"));
             contact.save(new Contact("Michelle", "Dessler"));
 
+            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
+            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
+            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
+            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
+            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
+
             // fetch all customers
             log.info("Customers found with findAll():");
             log.info("-------------------------------");
@@ -34,6 +40,11 @@ public class ContactData {
                 log.info(customer.toString());
             }
             log.info("");
+
+
+            for (Adresse ad : adresse.findAll()) {
+                log.info(ad.toString());
+            }
 
             // fetch an individual customer by ID
             Contact customer = contact.findById(1L);

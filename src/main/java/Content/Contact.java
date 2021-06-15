@@ -1,18 +1,24 @@
 package Content;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+import Content.Adresse;
 
 @Entity
-
 public class Contact {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "ContactAdresse",
+            joinColumns = @JoinColumn(name = "id_contact"),
+            inverseJoinColumns = @JoinColumn(name = "id_adresse")
+    )
+    private List<Adresse> adresses;
 
     protected Contact() {}
 
@@ -30,6 +36,13 @@ public class Contact {
 
     public Long getId() {
         return id;
+    }
+    public List<Adresse> getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(List<Adresse> adresses) {
+        this.adresses = adresses;
     }
 
     public String getFirstName() {

@@ -20,11 +20,14 @@ public class ContactController {
 
     @Autowired
     private OptionContact contactRepo;
+    @Autowired
+    private OptionAdresse adresseRepo;
     private static final Logger log = LoggerFactory.getLogger(ContactData.class);
 
     @GetMapping("/contact")
     public String contact(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue = "hello") String fooCookie, HttpServletResponse response) {
         model.addAttribute("name", contactRepo.findAll());
+        model.addAttribute("addrs", adresseRepo.findAll());
         model.addAttribute("contact", new Contact());
         return "contact";
     }
@@ -32,6 +35,11 @@ public class ContactController {
     @ModelAttribute("liste")
     public List<Contact> getSomeList(){
         return contactRepo.findAll();
+    }
+
+    @ModelAttribute("listeAdresse")
+    public List<Adresse> getSomeListAdresse(){
+        return adresseRepo.findAll();
     }
 
     @PostMapping("/Modifcontact")
@@ -72,8 +80,9 @@ public class ContactController {
     }
 
     @PostMapping("/Addcontact")
-    public String addContact(@ModelAttribute Contact contact, Model model) {
-        contactRepo.save(contact);
+    public String addContact(@ModelAttribute List contact, Model model) {
+        //contactRepo.save(contact);
+        log.info(contact.toString());
         return "redirect:/contact";
     }
 

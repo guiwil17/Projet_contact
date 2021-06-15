@@ -23,10 +23,20 @@
                 <label for="exampleInputPassword1">Nom</label>
                 <input name="lastName" type="text"  class="form-control">
             </div>
+                <th:block th:each="adresse : ${addrs}">
+                    <div>
+                        <input type="checkbox" th:field="*{adresses}" th:text="${adresse.ville}" th:value="${adresse.id}">
+                    </div>
 
+                </th:block>
+                <select class="form-control" id="adresses" name="adresses" multiple="multiple">
+                    <option th:each="part : ${addrs}"
+                            th:value="${part.id}"
+                            th:text="${part.ville}"></option>
+                </select>
             <div class="text-center">
 
-                <button type="submit" class="btn btn-primary text-center mt-4 mb-4" >Modifier</button>
+                <button type="submit" class="btn btn-primary text-center mt-4 mb-4" >Ajouter</button>
             </div>
 
             </div>

@@ -4,11 +4,15 @@ Content/Adresse.java
  Content.Adresse
 Content/Mail.java
  Content.Mail
+Content/OptionAdresse.java
+ Content.OptionAdresse
 Content/Contact.java
  Content.Contact
 Content/ContactData.java
  Content.ContactData
-Content/OptionContact.java
- Content.OptionContact
 Content/ContactController.java
  Content.ContactController
+Content/ContactAdresse.java
+ Content.ContactAdresse
+Content/OptionContact.java
+ Content.OptionContact
