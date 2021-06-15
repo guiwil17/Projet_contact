@@ -28,10 +28,10 @@ public class ContactData {
             contact.save(new Contact("Michelle", "Dessler"));
 
             adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
-            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
-            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
-            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
-            adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
+            adresse.save(new Adresse("Rue Jean Jaurès", "51100", "Reims"));
+            adresse.save(new Adresse("Avenue des champs élysée", "75000", "Paris"));
+            adresse.save(new Adresse("Rue des bonbons", "45000", "Grenoble"));
+            adresse.save(new Adresse("Rue des bijoux", "75000", "Paris"));
 
             // fetch all customers
             log.info("Customers found with findAll():");

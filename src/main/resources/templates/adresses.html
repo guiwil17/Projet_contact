@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gestion Adresses</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<h1 class="text-center mb-4">Gestion des adresses</h1>
+<div class="container mt-5">
+
+<div class="text-left">
+    <form  th:action="@{/contact}"  method="get">
+        <button type="submit" class="btn btn-primary text-center mt-4 mb-4" >Gérer les contact</button>
+    </form>
+</div>
+</div>
+<div class="container mt-5">
+    <form  th:action="@{/adresses/add}" th:object="${adresse}" method="post">
+        <div class="row">
+            <div class="col">
+                <label for="ligne">Rue</label>
+                <input name="ligne" type="text" id="ligne" class="form-control">
+            </div>
+            <div class="col">
+                <label for="code_postale">Code postale</label>
+                <input name="code_postale" type="text"  id="code_postale" class="form-control">
+            </div>
+            <div class="col">
+                <label for="ville">Ville</label>
+                <input name="ville" type="text"  id="ville" class="form-control">
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary text-center mt-4 mb-4" >Ajouter</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th th:text="Id" scope="col" class="text-center"></th>
+                <th th:text="Rue" scope="col" class="text-center"></th>
+                <th th:text="Ville" scope="col" class="text-center"></th>
+                <th scope="col" class="text-center">Code postale</th>
+                <th scope="col" class="text-center"></th>
+                <th scope="col" class="text-center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="e : ${adresses}">
+                <th th:text="${e.getId()}" scope="row" class="text-center"></th>
+                <td  th:text="${e.getAdresse()}" class="text-center"></td>
+                <td th:text="${e.getCode_postale()}" class="text-center"></td>
+                <td th:text="${e.getVille()}" class="text-center"></td>
+                <td class="text-center col-md-1">
+                    <form action="#" th:action="@{/adresses/modif}" th:object="${adresse}" method="post">
+                        <input name="id" type="hidden" th:value="${e.getId()}">
+                        <input name="ligne" type="hidden" th:value="${e.getAdresse()}" >
+                        <input name="code_postale" type="hidden" th:value="${e.getCode_postale()}">
+                        <input name="ville" type="hidden" th:value="${e.getVille()}">
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                    </form>
+                </td>
+                <td class="text-center col-md-1">
+                    <form action="#" th:action="@{/adresses/delete}" th:object="${adresse}" method="get">
+                        <input name="id" type="hidden" th:value="${e.getId()}">
+                        <input name="ligne" type="hidden" th:value="${e.getAdresse()}" >
+                        <input name="code_postale" type="hidden" th:value="${e.getCode_postale()}">
+                        <input name="ville" type="hidden" th:value="${e.getVille()}">
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

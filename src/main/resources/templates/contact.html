@@ -9,6 +9,15 @@
 </head>
 <body>
 <h1 class="text-center mb-4">Bonjour et bienvenue !</h1>
+<div class="container mt-5">
+
+<div class="text-left">
+    <form  th:action="@{/adresses}"  method="get">
+        <button type="submit" class="btn btn-primary text-center mt-4 mb-4" >Gérer les adresses disponibles</button>
+    </form>
+    </div>
+</div>
+
 
 <div class="container mt-5">
         <form  th:action="@{/Addcontact}" th:object="${contact}" method="post">
@@ -16,17 +25,17 @@
 
             <div class="col">
 
-                <label for="exampleInputEmail1">Prénom</label>
-                <input name="firstName" type="text" class="form-control">
+                <label for="firstName">Prénom</label>
+                <input name="firstName" type="text" id="firstName" class="form-control">
             </div>
             <div class="col">
-                <label for="exampleInputPassword1">Nom</label>
-                <input name="lastName" type="text"  class="form-control">
+                <label for="lastName">Nom</label>
+                <input name="lastName" type="text"  id="lastName" class="form-control">
             </div>
                 <select class="form-control" id="adresses" name="adresses" multiple="multiple">
                     <option th:each="part : ${addrs}"
                             th:value="${part.id}"
-                            th:text="${part.ville}"></option>
+                            th:text="${part.getTotal}"></option>
                 </select>
             <div class="text-center">
 
@@ -45,6 +54,7 @@
         <th th:text="Id" scope="col" class="text-center"></th>
         <th th:text="Prénom" scope="col" class="text-center"></th>
         <th th:text="Nom" scope="col" class="text-center"></th>
+        <th th:text="Adresses" scope="col" class="text-center"></th>
         <th scope="col" class="text-center"></th>
         <th scope="col" class="text-center"></th>
     </tr>
@@ -54,6 +64,11 @@
         <th th:text="${e.getId()}" scope="row" class="text-center"></th>
         <td  th:text="${e.getFirstName()}" class="text-center"></td>
         <td th:text="${e.getLastName()}" class="text-center"></td>
+        <td class="text-center">
+            <ul th:each="adresse : ${e.getAdresses()}">
+                <p th:text="${adresse.getTotal()}"></p>
+            </ul>
+        </td>
         <td class="text-center col-md-1">
             <form action="#" th:action="@{/Modifcontact}" th:object="${contact}" method="post">
                 <input name="id" type="hidden" th:value="${e.getId()}">

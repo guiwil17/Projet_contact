@@ -33,6 +33,9 @@ public class Adresse {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getAdresse() {
         return ligne;
     }
@@ -43,5 +46,9 @@ public class Adresse {
 
     public String getVille() {
         return ville;
+    }
+
+    public String getTotal() {
+        return  ligne + " " + ville + " " + code_postale;
     }
 }
