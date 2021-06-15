@@ -1,18 +1,18 @@
 Content/Main.java
  Content.Main
-Content/Adresse.java
- Content.Adresse
-Content/Mail.java
- Content.Mail
 Content/OptionAdresse.java
  Content.OptionAdresse
+Content/ContactAdresse.java
+ Content.ContactAdresse
+Content/Mail.java
+ Content.Mail
+Content/Adresse.java
+ Content.Adresse
 Content/Contact.java
  Content.Contact
 Content/ContactData.java
  Content.ContactData
 Content/ContactController.java
  Content.ContactController
-Content/ContactAdresse.java
- Content.ContactAdresse
 Content/OptionContact.java
  Content.OptionContact
