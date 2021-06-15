@@ -80,8 +80,8 @@ public class ContactController {
     }
 
     @PostMapping("/Addcontact")
-    public String addContact(@ModelAttribute List contact, Model model) {
-        //contactRepo.save(contact);
+    public String addContact(@ModelAttribute Contact contact, Model model) {
+        contactRepo.save(contact);
         log.info(contact.toString());
         return "redirect:/contact";
     }

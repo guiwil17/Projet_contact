@@ -30,8 +30,8 @@ public class Contact {
     @Override
     public String toString() {
         return String.format(
-                "Contact[id=%d, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
+                "Contact[id=%d, firstName='%s', lastName='%s', adresse='%s']",
+                id, firstName, lastName, adresses);
     }
 
     public Long getId() {
