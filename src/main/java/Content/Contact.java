@@ -3,7 +3,9 @@ package Content;
 import javax.persistence.*;
 import java.util.List;
 import Content.Adresse;
-import Content.Mail;
+import Content.Email;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Contact {
@@ -20,7 +22,11 @@ public class Contact {
             inverseJoinColumns = @JoinColumn(name = "id_adresse")
     )
     private List<Adresse> adresses;
-    private String Email;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
+    @JoinColumn(name = "contact_id",referencedColumnName="id")
+    private List<Email> emails;
 
     protected Contact() {}
 
@@ -33,7 +39,7 @@ public class Contact {
     public String toString() {
         return String.format(
                 "Contact[id=%d, firstName='%s', lastName='%s', adresses='%s', mail='%s']",
-                id, firstName, lastName, adresses, Email);
+                id, firstName, lastName, adresses, emails);
     }
 
     public Long getId() {
@@ -47,12 +53,12 @@ public class Contact {
         this.adresses = adresses;
     }
 
-    public String getMail() {
-        return Email;
+    public List<Email> getEmail() {
+        return emails;
     }
 
-    public void setMail(String Mail) {
-        this.Email = Email;
+    public void setEmail(List<Email> emails) {
+        this.emails = emails;
     }
 
     public String getFirstName() {

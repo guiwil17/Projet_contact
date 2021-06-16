@@ -1,20 +1,19 @@
 package Content;
+import Content.Contact;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Mail {
+public class Email {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String mail;
+    public String mail;
 
-    protected Mail() {}
+    protected Email() {}
 
-    public Mail(String adresse) {
+
+    public Email(String mail) {
         this.mail = mail;
     }
 
@@ -29,7 +28,12 @@ public class Mail {
         return id;
     }
 
-    public String getAdresse() {
+
+    public void setEmail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getEmail() {
         return mail;
     }
 
