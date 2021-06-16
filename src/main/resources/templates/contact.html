@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
+
 </head>
 <body>
 <h1 class="text-center mb-4">Bonjour et bienvenue !</h1>
@@ -35,12 +36,18 @@
                 <label for="Email">Email</label>
                 <input id="Email" name="Email" type="text" class="form-control" required>
             </div>
-                <select class="form-control" id="adresses" name="adresses" multiple="multiple">
+            <div class="form-group">
+                <label for="adresses">Adresses</label>
+                <select class="form-control selectpicker" name="adresses" id="adresses" multiple>
+
                     <option th:each="part : ${addrs}"
                             th:value="${part.id}"
+                            th:text="${part.getTotal}">dip
+                    </option>
 
-                            th:text="${part.getTotal}"></option>
                 </select>
+            </div>
+
 
             <div class="text-center">
 

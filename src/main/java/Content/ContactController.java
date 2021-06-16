@@ -27,8 +27,10 @@ public class ContactController {
     private static final Logger log = LoggerFactory.getLogger(ContactData.class);
 
     @GetMapping("/contact")
-    public String contact(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue = "hello") String fooCookie, HttpServletResponse response) {
+    public String contact(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
         model.addAttribute("name", contactRepo.findAll());
+        //Cookie cookie = new Cookie("ddd", contactRepo.findById(2).toString());
+        //response.addCookie(cookie);
         model.addAttribute("addrs", adresseRepo.findAll());
         model.addAttribute("contact", new Contact());
         model.addAttribute("adresse", new Adresse());
@@ -54,9 +56,21 @@ public class ContactController {
         contact = contactRepo.findById(id);
 
          */
+
+        Long id = contact.getId();
+
+       List<Contact> listcontact = contactRepo.findAll();
+
+        for (Contact cont : listcontact){
+            if(contact.getId() == cont.getId()){
+               contact = cont;
+            }
+
+        }
+
         model.addAttribute("contact", contact);
         model.addAttribute("modifcontact", new Contact());
-
+        model.addAttribute("addrs", adresseRepo.findAll());
         return "update";
     }
 

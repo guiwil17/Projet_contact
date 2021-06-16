@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 public class Adresse {
@@ -48,6 +49,13 @@ public class Adresse {
         return ville;
     }
 
+    public Boolean verif(List<Adresse> addrs ){
+        boolean trouve = false;
+        for (Adresse adresse : addrs) {
+            if(id == adresse.id) trouve = true;
+        }
+        return trouve;
+    }
     public String getTotal() {
         return  ligne + " " + ville + " " + code_postale;
     }
