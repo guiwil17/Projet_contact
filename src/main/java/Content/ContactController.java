@@ -6,15 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.List;
-
-import static org.graalvm.compiler.debug.TTY.print;
 
 @Controller
 @SessionAttributes("valueSession2")
@@ -35,6 +30,16 @@ public class ContactController {
         model.addAttribute("contact", new Contact());
         model.addAttribute("adresse", new Adresse());
         return "contact";
+    }
+    @GetMapping("/login")
+    public String login(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
+        model.addAttribute("name", contactRepo.findAll());
+        //Cookie cookie = new Cookie("ddd", contactRepo.findById(2).toString());
+        //response.addCookie(cookie);
+        model.addAttribute("addrs", adresseRepo.findAll());
+        model.addAttribute("contact", new Contact());
+        model.addAttribute("adresse", new Adresse());
+        return "login";
     }
 
     @ModelAttribute("liste")
