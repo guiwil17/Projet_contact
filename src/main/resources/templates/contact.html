@@ -35,7 +35,7 @@
                 <select class="form-control" id="adresses" name="adresses" multiple="multiple">
                     <option th:each="part : ${addrs}"
                             th:value="${part.id}"
-                            th:selected=""
+
                             th:text="${part.getTotal}"></option>
                 </select>
             <div class="text-center">
