@@ -28,22 +28,13 @@
                 <label for="Email">Email</label>
                 <input id="Email" name="Email" type="text" class="form-control" required>
             </div>
-<<<<<<< HEAD
                 <select class="form-control" id="adresses" name="adresses" multiple="multiple">
                     <option th:each="part : ${addrs}"
                             th:value="${part.id}"
 
                             th:text="${part.getTotal}"></option>
                 </select>
-=======
-            </br>
-            <select class="form-control" id="adresses" name="adresses" multiple="multiple" required>
-                <option th:each="part : ${addrs}"
-                        th:value="${part.id}"
-                        th:selected=""
-                        th:text="${part.ville}"></option>
-            </select>
->>>>>>> 0c2724ccb31a4b6d8eab07592d2663529f5eb6a7
+
             <div class="text-center">
 
                 <button type="submit" class="btn btn-primary text-center mt-4 mb-4" >Ajouter</button>
