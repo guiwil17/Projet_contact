@@ -66,6 +66,7 @@
                 <th th:text="Id" scope="col" class="text-center"></th>
                 <th th:text="Prénom" scope="col" class="text-center"></th>
                 <th th:text="Nom" scope="col" class="text-center"></th>
+                <th th:text="Adresses" scope="col" class="text-center"></th>
                 <th scope="col" class="text-center"></th>
                 <th scope="col" class="text-center"></th>
             </tr>
@@ -75,6 +76,11 @@
                 <th th:text="${e.getId()}" scope="row" class="text-center"></th>
                 <td  th:text="${e.getFirstName()}" class="text-center"></td>
                 <td th:text="${e.getLastName()}" class="text-center"></td>
+                <td class="text-center">
+                    <ul th:each="adresse : ${e.getAdresses()}">
+                        <p th:text="${adresse.getTotal()}"></p>
+                    </ul>
+                </td>
                 <td class="text-center col-md-1">
                     <form action="#" th:action="@{/Modifcontact}" th:object="${contact}" method="post">
                         <input name="id" type="hidden" th:value="${e.getId()}">
