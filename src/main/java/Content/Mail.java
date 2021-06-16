@@ -1,39 +1,36 @@
 package Content;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Mail {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String mail;
 
     protected Mail() {}
 
-    public Mail(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Mail(String adresse) {
+        this.mail = mail;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
+                "Customer[id=%d, mail='%s']",
+                id, mail);
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getAdresse() {
+        return mail;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
 }

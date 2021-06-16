@@ -3,6 +3,7 @@ package Content;
 import javax.persistence.*;
 import java.util.List;
 import Content.Adresse;
+import Content.Mail;
 
 @Entity
 public class Contact {
@@ -19,6 +20,7 @@ public class Contact {
             inverseJoinColumns = @JoinColumn(name = "id_adresse")
     )
     private List<Adresse> adresses;
+    private String Email;
 
     protected Contact() {}
 
@@ -30,8 +32,8 @@ public class Contact {
     @Override
     public String toString() {
         return String.format(
-                "Contact[id=%d, firstName='%s', lastName='%s', adresses='%s']",
-                id, firstName, lastName, adresses);
+                "Contact[id=%d, firstName='%s', lastName='%s', adresses='%s', mail='%s']",
+                id, firstName, lastName, adresses, Email);
     }
 
     public Long getId() {
@@ -43,6 +45,14 @@ public class Contact {
 
     public void setAdresses(List<Adresse> adresses) {
         this.adresses = adresses;
+    }
+
+    public String getMail() {
+        return Email;
+    }
+
+    public void setMail(String Mail) {
+        this.Email = Email;
     }
 
     public String getFirstName() {
