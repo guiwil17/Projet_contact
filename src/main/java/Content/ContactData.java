@@ -33,6 +33,9 @@ public class ContactData {
             adresse.save(new Adresse("Rue des bonbons", "45000", "Grenoble"));
             adresse.save(new Adresse("Rue des bijoux", "75000", "Paris"));
 
+            //email.save(new Email("gg@gg.com"));
+            //email.save(new Email("gg@gg.com"));
+
             // fetch all customers
             log.info("Customers found with findAll():");
             log.info("-------------------------------");

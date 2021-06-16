@@ -27,11 +27,13 @@ public class ContactController {
     private static final Logger log = LoggerFactory.getLogger(ContactData.class);
 
     @GetMapping("/contact")
-    public String contact(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
+    public String contact(@RequestParam(name="erreur", required=false, defaultValue="false") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
         model.addAttribute("name", contactRepo.findAll());
         //Cookie cookie = new Cookie("ddd", contactRepo.findById(2).toString());
         //response.addCookie(cookie);
         model.addAttribute("addrs", adresseRepo.findAll());
+        log.info(name);
+        model.addAttribute("erreur", name);
         model.addAttribute("contact", new Contact());
         model.addAttribute("adresse", new Adresse());
         return "contact";
@@ -49,7 +51,7 @@ public class ContactController {
 
     @PostMapping("/Modifcontact")
     public String modifContact(@ModelAttribute Contact contact, Model model) {
-        log.info(contact.toString());
+
         /*
         String f = contact.getFirstName();
         Integer id = Integer.parseInt(f);
@@ -67,7 +69,7 @@ public class ContactController {
             }
 
         }
-
+        log.info(contact.toString());
         model.addAttribute("contact", contact);
         model.addAttribute("modifcontact", new Contact());
         model.addAttribute("addrs", adresseRepo.findAll());
@@ -77,7 +79,10 @@ public class ContactController {
     @PostMapping("/contact")
     public String updateContact(@ModelAttribute Contact contact, Model model) {
         log.info(contact.toString());
-        contactRepo.save(contact);
+
+            contactRepo.save(contact);
+
+
 
         model.addAttribute("name", contactRepo.findAll());
         model.addAttribute("contact", new Contact());
@@ -93,9 +98,18 @@ public class ContactController {
 
     @PostMapping("/Addcontact")
     public String addContact(@ModelAttribute Contact contact, Model model) {
+        log.info(contact.toString());
+
+        try{
         contactRepo.save(contact);
+    }
+        catch (Exception e){
+        log.info(e.toString());
+            return "redirect:/contact?erreur=true";
+    }
         log.info(contact.toString());
         return "redirect:/contact";
+
     }
 
     @GetMapping("/adresses")

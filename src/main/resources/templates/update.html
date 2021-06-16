@@ -23,6 +23,11 @@
                 <label for="exampleInputPassword1">Nom</label>
                 <input name="lastName" type="text"  class="form-control" placeholder="Nom de famille" th:value="${contact.getLastName()}">
             </div>
+                <div class="col">
+                    <label for="exampleInputPassword1">Nom</label>
+                    <input name="emailProfessionnel" type="text"  class="form-control" placeholder="Nom de famille" th:value="${contact.getEmailProfessionnel().mail}">
+                </div>
+
                 <select class="form-control" id="adresses" name="adresses" multiple="multiple">
                     <option th:each="part : ${addrs}"
                             th:value="${part.id}"

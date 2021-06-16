@@ -1,6 +1,8 @@
 package Content;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import Content.Adresse;
 import Content.Email;
@@ -8,7 +10,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-public class Contact {
+public class Contact implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
@@ -23,10 +25,24 @@ public class Contact {
     )
     private List<Adresse> adresses;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
-    @JoinColumn(name = "contact_id",referencedColumnName="id")
-    private List<Email> emails;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="emailid")
+    private Email emailProfessionnel;
+
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="emailid2")
+    private Email emailPersonnel;
+
+    public Contact(Long id, String firstName, String lastName, List<Adresse> adresses, Email emailProfessionnel, Email emailPersonnel) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adresses = adresses;
+        this.emailProfessionnel = emailProfessionnel;
+        this.emailPersonnel = emailPersonnel;
+    }
 
     protected Contact() {}
 
@@ -38,13 +54,34 @@ public class Contact {
     @Override
     public String toString() {
         return String.format(
-                "Contact[id=%d, firstName='%s', lastName='%s', adresses='%s', mail='%s']",
-                id, firstName, lastName, adresses, emails);
+                "Contact[id=%d, firstName='%s', lastName='%s', adresses='%s', mailperso='%s', , mailperso='%s']",
+                id, firstName, lastName, adresses, emailProfessionnel, emailPersonnel);
     }
 
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public List<Adresse> getAdresses() {
         return adresses;
     }
@@ -53,31 +90,19 @@ public class Contact {
         this.adresses = adresses;
     }
 
-    public List<Email> getEmail() {
-        return emails;
+    public Email getEmailProfessionnel() {
+        return emailProfessionnel;
     }
 
-    public void setEmail(List<Email> emails) {
-        this.emails = emails;
+    public void setEmailProfessionnel(Email emailProfessionnel) {
+        this.emailProfessionnel = emailProfessionnel;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Email getEmailPersonnel() {
+        return emailPersonnel;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setEmailPersonnel(Email emailPersonnel) {
+        this.emailPersonnel = emailPersonnel;
     }
 }
