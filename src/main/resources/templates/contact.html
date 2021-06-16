@@ -9,7 +9,14 @@
 </head>
 <body>
 <h1 class="text-center mb-4">Bonjour et bienvenue !</h1>
+<div class="container mt-5">
 
+    <div class="text-left">
+        <form  th:action="@{/adresses}"  method="get">
+            <button type="submit" class="btn btn-primary text-center mt-4 mb-4" >Gérer les adresses disponibles</button>
+        </form>
+    </div>
+</div>
 <div class="container mt-5">
     <form  th:action="@{/Addcontact}" th:object="${contact}" method="post">
         <div class="row">
