@@ -31,6 +31,7 @@ public class ContactController {
         model.addAttribute("name", contactRepo.findAll());
         model.addAttribute("addrs", adresseRepo.findAll());
         model.addAttribute("contact", new Contact());
+        model.addAttribute("adresse", new Adresse());
         return "contact";
     }
 
@@ -62,15 +63,10 @@ public class ContactController {
     @PostMapping("/contact")
     public String updateContact(@ModelAttribute Contact contact, Model model) {
         log.info(contact.toString());
-        /*
-        String f = contact.getFirstName();
-        Integer id = Integer.parseInt(f);
-        contact = contactRepo.findById(id);
+        contactRepo.save(contact);
 
-         */
         model.addAttribute("name", contactRepo.findAll());
         model.addAttribute("contact", new Contact());
-        contactRepo.save(contact);
         model.addAttribute("contact", contact);
         return "contact";
     }
@@ -87,5 +83,47 @@ public class ContactController {
         log.info(contact.toString());
         return "redirect:/contact";
     }
+
+    @GetMapping("/adresses")
+    public String adresses(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue = "hello") String fooCookie, HttpServletResponse response) {
+        model.addAttribute("adresses", adresseRepo.findAll());
+        model.addAttribute("adresse", new Adresse());
+        return "adresses";
+    }
+
+    @GetMapping("/adresses/delete")
+    public String deleteAdresse(@ModelAttribute Adresse adresse, Model model) {
+        log.info(adresse.toString());
+        adresseRepo.delete(adresse);
+        return "redirect:/adresses";
+    }
+
+    @PostMapping("/adresses/add")
+    public String addAdresse(@ModelAttribute Adresse adresse, Model model) {
+        adresseRepo.save(adresse);
+        return "redirect:/adresses";
+    }
+
+    @PostMapping("/adresses/update")
+    public String updateAdresse(@ModelAttribute Adresse adresse, Model model) {
+        adresseRepo.save(adresse);
+        return "redirect:/adresses";
+    }
+
+    @PostMapping("/adresses/modif")
+    public String modifAdresse(@ModelAttribute Adresse adresse, Model model) {
+        log.info(adresse.toString());
+        /*
+        String f = contact.getFirstName();
+        Integer id = Integer.parseInt(f);
+        contact = contactRepo.findById(id);
+
+         */
+        model.addAttribute("adresse", adresse);
+        model.addAttribute("modifadresse", new Adresse());
+
+        return "updateAdresse";
+    }
+
 
 }
