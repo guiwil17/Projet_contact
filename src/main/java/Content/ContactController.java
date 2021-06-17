@@ -111,6 +111,7 @@ public class ContactController {
         model.addAttribute("name", contactRepo.findAll());
         model.addAttribute("contact", new ContactForm());
         model.addAttribute("contact", contact);
+        model.addAttribute("addrs", adresseRepo.findAll());
         return "contact";
     }
 

@@ -23,7 +23,7 @@
 
 <div th:if="${erreur}">
     <div class="alert alert-danger mt-3 mb-2" role="alert">
-        L'un des emails ou les deux existent déjà ! Insertion non faites
+        L'un des emails ou les deux existent déjà ! Insertion ou modification non fait
     </div>
 </div>
     </div>
@@ -42,13 +42,14 @@
                 <input id="lastName" name="lastName" type="text"  class="form-control" required>
             </div>
             </br>
-                        <div class="col">
-                <label for="emailProfessionnel">Email professionnel</label>
-                <input id="emailProfessionnel" name="emailProfessionnel" type="text" class="form-control" required>
-            </div>
+
             <div class="col">
                 <label for="emailPersonnel">Email personnel</label>
-                <input id="emailPersonnel" name="emailPersonnel" type="text" class="form-control" required>
+                <input id="emailPersonnel" name="emailPersonnel" type="email" class="form-control" required>
+            </div>
+            <div class="col">
+                <label for="emailProfessionnel">Email professionnel</label>
+                <input id="emailProfessionnel" name="emailProfessionnel" type="email" class="form-control">
             </div>
             <div class="form-group">
                 <label for="adresses">Adresses</label>

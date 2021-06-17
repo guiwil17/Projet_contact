@@ -17,15 +17,15 @@
         <div class="row">
             <div class="col">
                 <label for="ligne">Rue</label>
-                <input name="ligne" type="text" id="ligne" class="form-control" th:value="${adresse.getAdresse()}">
+                <input name="ligne" type="text" id="ligne" class="form-control" th:value="${adresse.getAdresse()}" required>
             </div>
             <div class="col">
                 <label for="code_postale">Code postale</label>
-                <input name="code_postale" type="text"  id="code_postale" class="form-control" th:value="${adresse.getCode_postale()}">
+                <input name="code_postale" type="text"  id="code_postale" class="form-control" th:value="${adresse.getCode_postale()}" required>
             </div>
             <div class="col">
                 <label for="ville">Ville</label>
-                <input name="ville" type="text"  id="ville" class="form-control" th:value="${adresse.getVille()}">
+                <input name="ville" type="text"  id="ville" class="form-control" th:value="${adresse.getVille()}" required>
             </div>
 
             <div class="text-center">
