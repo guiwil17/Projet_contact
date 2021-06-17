@@ -11,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 
@@ -72,8 +73,18 @@ public class ContactController {
 
         }
         log.info(contact.toString());
+        ContactForm contactForm = new ContactForm(contact.getId(),contact.getFirstName(), contact.getLastName(), contact.getAdresses(), contact.getMailPersonnel().getMail(), contact.getMailPersonnel().getId());
 
-        ContactForm contactForm = new ContactForm(contact.getId(),contact.getFirstName(), contact.getLastName(), contact.getAdresses(),contact.getMailProfessionnel().getMail(), contact.getMailProfessionnel().getId(), contact.getMailPersonnel().getMail(), contact.getMailPersonnel().getId());
+        if (contact.getMailProfessionnel() != null){
+            contactForm.setEmailProfessionnel(contact.getMailProfessionnel().getMail());
+            contactForm.setIdemailPro(contact.getMailProfessionnel().getId());
+
+        }
+        else{
+            contactForm.setEmailProfessionnel("");
+            contactForm.setIdemailPro(-1L);
+
+        }
         model.addAttribute("contact", contactForm);
         model.addAttribute("modifcontact", new ContactForm());
         model.addAttribute("addrs", adresseRepo.findAll());
@@ -83,23 +94,38 @@ public class ContactController {
     @PostMapping("/contact")
     public String updateContact(@ModelAttribute ContactForm contactform, Model model) {
         log.info(contactform.toString());
-        Email email = new Email(contactform.getIdemailPro(),contactform.getEmailProfessionnel());
         Email emailPerso = new Email(contactform.getIdemailPerso(),contactform.getEmailPersonnel());
+        log.info(emailPerso.toString());
+        Contact contact = new Contact(contactform.getFirstName(), contactform.getLastName(), contactform.getAdresses());
 
-        log.info(email.toString());
-        Contact contact = new Contact(contactform.getId(),contactform.getFirstName(), contactform.getLastName(), contactform.getAdresses(), email, emailPerso );
+        if(contactform.getIdemailPro() != -1L){
 
-
-        try{
-            emailRepo.save(email);
-            emailRepo.save(emailPerso);
-            contactRepo.save(contact);
+            Email email = new Email(contactform.getEmailProfessionnel());
+            contact.setMailProfessionnel(email);
+            contact.setMailPersonnel(emailPerso);
+            try{
+                emailRepo.save(email);
+                emailRepo.save(emailPerso);
+                contactRepo.save(contact);
+            }
+            catch (Exception e){
+                log.info(e.toString());
+                return "redirect:/contact?erreur=true";
+            }
         }
-        catch (Exception e){
-            log.info(e.toString());
-            return "redirect:/contact?erreur=true";
+        else{
+            log.info("ici");
+            contact.setMailPersonnel(emailPerso);
+            log.info(contact.toString());
+            try{
+                emailRepo.save(emailPerso);
+                contactRepo.save(contact);
+            }
+            catch (Exception e){
+                log.info(e.toString());
+                return "redirect:/contact?erreur=true";
+            }
         }
-
         log.info(contact.toString());
 
         List<Email> tot = emailRepo.findAll();
@@ -124,11 +150,19 @@ public class ContactController {
     @PostMapping("/Addcontact")
     public String addContact(@ModelAttribute ContactForm contactform, Model model) {
         log.info(contactform.toString());
-        Email email = new Email(contactform.getEmailProfessionnel());
         Email emailPerso = new Email(contactform.getEmailPersonnel());
-        log.info(email.toString());
 
-        Contact contact = new Contact(contactform.getFirstName(), contactform.getLastName(), contactform.getAdresses(), email, emailPerso);
+        Contact contact = new Contact(contactform.getFirstName(), contactform.getLastName(), contactform.getAdresses());
+        if(contactform.getEmailProfessionnel() != ""){
+            Email email = new Email(contactform.getEmailProfessionnel());
+            contact.setMailProfessionnel(email);
+            contact.setMailPersonnel(emailPerso);
+        }
+        else {
+            contact.setMailPersonnel(emailPerso);
+        }
+        log.info(emailPerso.toString());
+
 
         //contact.setMailProfessionnel(email);
 

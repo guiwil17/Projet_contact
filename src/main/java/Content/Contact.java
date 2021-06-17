@@ -49,6 +49,19 @@ public class Contact implements Serializable {
         this.mailPersonnel = mailPersonnel;
     }
 
+    public Contact(String firstName, String lastName, List<Adresse> adresses) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adresses = adresses;
+    }
+
+    public Contact(String firstName, String lastName, List<Adresse> adresses, Email mailProfessionnel) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adresses = adresses;
+        this.mailProfessionnel = mailProfessionnel;
+    }
+
     public Contact(String firstName, String lastName, List<Adresse> adresses, Email mailProfessionnel, Email mailPersonnel) {
         this.id = id;
         this.firstName = firstName;

@@ -52,6 +52,13 @@ public class ContactForm {
         this.idemailPro = idemailPro;
     }
 
+    public ContactForm(Long id, String firstName, String lastName, List<Adresse> adresses) {
+        Id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adresses = adresses;
+    }
+
     public ContactForm(Long id, String firstName, String lastName, List<Adresse> adresses, String emailProfessionnel, Long idemailPro, String emailPersonnel, Long idemailPerso) {
         Id = id;
         this.firstName = firstName;
@@ -63,13 +70,14 @@ public class ContactForm {
         this.idemailPerso = idemailPerso;
     }
 
-    public ContactForm(Long id, String firstName, String lastName, List<Adresse> adresses, String emailProfessionnel, Long idemailPro) {
+
+    public ContactForm(Long id, String firstName, String lastName, List<Adresse> adresses, String emailPersonnel, Long idemailPerso) {
         Id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.adresses = adresses;
-        this.emailProfessionnel = emailProfessionnel;
-        this.idemailPro = idemailPro;
+        this.emailPersonnel = emailPersonnel;
+        this.idemailPerso = idemailPerso;
     }
 
     protected ContactForm() {}
