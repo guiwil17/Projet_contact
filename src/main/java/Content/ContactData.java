@@ -17,7 +17,7 @@ public class ContactData {
     }
 
     @Bean
-    public CommandLineRunner demo(OptionContact contact, OptionAdresse adresse) {
+    public CommandLineRunner demo(OptionContact contact, OptionAdresse adresse, EmailRepository email) {
         return (args) -> {
             // save a few customers
 
@@ -33,6 +33,8 @@ public class ContactData {
             adresse.save(new Adresse("Rue des bonbons", "45000", "Grenoble"));
             adresse.save(new Adresse("Rue des bijoux", "75000", "Paris"));
 
+            email.save(new Email("Rue des bijoux"));
+
             //email.save(new Email("gg@gg.com"));
             //email.save(new Email("gg@gg.com"));
 
@@ -41,6 +43,11 @@ public class ContactData {
             log.info("-------------------------------");
             for (Contact customer : contact.findAll()) {
                 log.info(customer.toString());
+            }
+            log.info("");
+
+            for (Email email1 : email.findAll()) {
+                log.info(email1.toString());
             }
             log.info("");
 

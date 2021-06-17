@@ -26,23 +26,56 @@ public class Contact implements Serializable {
     private List<Adresse> adresses;
 
 
-    @OneToOne(cascade=CascadeType.ALL)
+
+
+
+    @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="emailid")
-    private Email emailProfessionnel;
+    private Email mailProfessionnel;
 
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="emailid2")
-    private Email emailPersonnel;
+    private Email mailPersonnel;
 
-    public Contact(Long id, String firstName, String lastName, List<Adresse> adresses, Email emailProfessionnel, Email emailPersonnel) {
+
+
+    public Contact(Long id, String firstName, String lastName, List<Adresse> adresses, Email mailProfessionnel, Email mailPersonnel) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.adresses = adresses;
-        this.emailProfessionnel = emailProfessionnel;
-        this.emailPersonnel = emailPersonnel;
+        this.mailProfessionnel = mailProfessionnel;
+        this.mailPersonnel = mailPersonnel;
     }
+
+    public Contact(String firstName, String lastName, List<Adresse> adresses, Email mailProfessionnel, Email mailPersonnel) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adresses = adresses;
+        this.mailProfessionnel = mailProfessionnel;
+        this.mailPersonnel = mailPersonnel;
+    }
+
+    public Email getMailPersonnel() {
+        return mailPersonnel;
+    }
+
+    public void setMailPersonnel(Email mailPersonnel) {
+        this.mailPersonnel = mailPersonnel;
+    }
+
+    public Email getMailProfessionnel() {
+        return mailProfessionnel;
+    }
+
+    public void setMailProfessionnel(Email mailProfessionnel) {
+        this.mailProfessionnel = mailProfessionnel;
+    }
+
+
+
 
     protected Contact() {}
 
@@ -54,8 +87,8 @@ public class Contact implements Serializable {
     @Override
     public String toString() {
         return String.format(
-                "Contact[id=%d, firstName='%s', lastName='%s', adresses='%s', mailperso='%s', , mailperso='%s']",
-                id, firstName, lastName, adresses, emailProfessionnel, emailPersonnel);
+                "Contact[id=%d, firstName='%s', lastName='%s', adresses='%s', mailpro='%s', mailperso='%s']",
+                id, firstName, lastName, adresses, mailProfessionnel, mailPersonnel);
     }
 
     public Long getId() {
@@ -90,19 +123,5 @@ public class Contact implements Serializable {
         this.adresses = adresses;
     }
 
-    public Email getEmailProfessionnel() {
-        return emailProfessionnel;
-    }
 
-    public void setEmailProfessionnel(Email emailProfessionnel) {
-        this.emailProfessionnel = emailProfessionnel;
-    }
-
-    public Email getEmailPersonnel() {
-        return emailPersonnel;
-    }
-
-    public void setEmailPersonnel(Email emailPersonnel) {
-        this.emailPersonnel = emailPersonnel;
-    }
 }

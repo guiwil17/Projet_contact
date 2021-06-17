@@ -14,18 +14,24 @@
         <form  th:action="@{/contact}" th:object="${modifcontact}" method="post">
             <div class="row">
                 <input name="id" type="hidden" th:value="${contact.getId()}">
-
+                <input name="idemailPro" type="hidden" th:value="${contact.getIdemailPro()}">
+                <input name="idemailPerso" type="hidden" th:value="${contact.getIdemailPerso()}">
                 <div class="col">
-                <label for="exampleInputEmail1">Prénom</label>
-                <input name="firstName" type="text" class="form-control" th:value="${contact.getFirstName()}">
+                <label for="firstName">Prénom</label>
+                <input name="firstName" type="text" id="firstName" class="form-control" th:value="${contact.getFirstName()}">
             </div>
                     <div class="col">
-                <label for="exampleInputPassword1">Nom</label>
-                <input name="lastName" type="text"  class="form-control" placeholder="Nom de famille" th:value="${contact.getLastName()}">
+                <label for="lastName">Nom</label>
+                <input name="lastName" type="text" id="lastName" class="form-control" placeholder="Nom de famille" th:value="${contact.getLastName()}">
             </div>
                 <div class="col">
-                    <label for="exampleInputPassword1">Nom</label>
-                    <input name="emailProfessionnel" type="text"  class="form-control" placeholder="Nom de famille" th:value="${contact.getEmailProfessionnel().mail}">
+                    <label for="emailProfessionnel">Nom</label>
+                    <input name="emailProfessionnel"  id="emailProfessionnel" type="text"  class="form-control" placeholder="Nom de famille" th:value="${contact.getEmailProfessionnel()}">
+                </div>
+
+                <div class="col">
+                    <label for="emailPersonnel">Email personnel</label>
+                    <input id="emailPersonnel" name="emailPersonnel" type="text" class="form-control"  th:value="${contact.getEmailPersonnel()}">
                 </div>
 
                 <select class="form-control" id="adresses" name="adresses" multiple="multiple">
