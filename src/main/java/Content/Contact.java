@@ -1,11 +1,13 @@
 package Content;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import Content.Adresse;
 import Content.Email;
+
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -23,6 +25,7 @@ public class Contact implements Serializable {
             joinColumns = @JoinColumn(name = "id_contact"),
             inverseJoinColumns = @JoinColumn(name = "id_adresse")
     )
+
     private List<Adresse> adresses;
 
     @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
