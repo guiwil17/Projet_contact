@@ -25,10 +25,6 @@ public class Contact implements Serializable {
     )
     private List<Adresse> adresses;
 
-
-
-
-
     @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="emailid")
     private Email mailProfessionnel;
@@ -37,6 +33,13 @@ public class Contact implements Serializable {
     @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="emailid2")
     private Email mailPersonnel;
+
+
+    public Contact(String firstName, String lastName, Email mailPersonnel) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mailPersonnel = mailPersonnel;
+    }
 
     public Contact(Long id, String firstName, String lastName, List<Adresse> adresses) {
         this.id = id;

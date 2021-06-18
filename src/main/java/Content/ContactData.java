@@ -21,11 +21,6 @@ public class ContactData {
         return (args) -> {
             // save a few customers
 
-            contact.save(new Contact("Jack", "Bauer"));
-            contact.save(new Contact("Chloe", "O'Brian"));
-            contact.save(new Contact("Kim", "Bauer"));
-            contact.save(new Contact("David", "Palmer"));
-            contact.save(new Contact("Michelle", "Dessler"));
 
             adresse.save(new Adresse("Rue des martyres", "51100", "Reims"));
             adresse.save(new Adresse("Rue Jean Jaurès", "51100", "Reims"));
@@ -33,8 +28,16 @@ public class ContactData {
             adresse.save(new Adresse("Rue des bonbons", "45000", "Grenoble"));
             adresse.save(new Adresse("Rue des bijoux", "75000", "Paris"));
 
-            email.save(new Email("Rue des bijoux"));
+/*
+            Email email10 = new Email("Rue des bijoux");
 
+
+ email.save(email10);
+            contact.save(new Contact("Jack", "Bauer",email10));
+            contact.save(new Contact("Chloe", "O'Brian",email10));
+            contact.save(new Contact("Kim", "Bauer", email10));
+            contact.save(new Contact("David", "Palmer", email10));
+            contact.save(new Contact("Michelle", "Dessler", email10));
             //email.save(new Email("gg@gg.com"));
             //email.save(new Email("gg@gg.com"));
 
@@ -52,9 +55,7 @@ public class ContactData {
             log.info("");
 
 
-            for (Adresse ad : adresse.findAll()) {
-                log.info(ad.toString());
-            }
+
 
             // fetch an individual customer by ID
             Contact customer = contact.findById(1L);
@@ -71,11 +72,16 @@ public class ContactData {
                 log.info(bauer.toString());
             });
 
-             */
+
             // for (Customer bauer : repository.findByLastName("Bauer")) {
             //  log.info(bauer.toString());
             // }
             log.info("");
+        };
+*/
+            for (Adresse ad : adresse.findAll()) {
+                log.info(ad.toString());
+            }
         };
     }
 

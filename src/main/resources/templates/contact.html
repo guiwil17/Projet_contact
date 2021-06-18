@@ -46,7 +46,6 @@
                 <label for="lastName">Nom</label>
                 <input id="lastName" name="lastName" type="text"  class="form-control" required>
             </div>
-            </br>
 
             <div class="col">
                 <label for="emailPersonnel">Email personnel</label>
@@ -65,7 +64,8 @@
                             th:text="${part.getTotal}">
                     </option>
 
-
+                </select>
+            </div>
 
                 <div class="text-center">
 
@@ -86,6 +86,8 @@
                     <th th:text="Prénom" scope="col" class="text-center"></th>
                     <th th:text="Nom" scope="col" class="text-center"></th>
                     <th th:text="Adresses" scope="col" class="text-center"></th>
+                    <th scope="col" class="text-center">Adresse mail personnel</th>
+                    <th scope="col" class="text-center">Adresse mail professionnel</th>
                     <th scope="col" class="text-center"></th>
                     <th scope="col" class="text-center"></th>
                 </tr>
@@ -100,6 +102,8 @@
                             <p th:text="${adresse.getTotal()}"></p>
                         </ul>
                     </td>
+                    <td th:text="${e.getEmailPersonnel()}" class="text-center"></td>
+                    <td th:text="${e.getEmailProfessionnel()}" class="text-center"></td>
                     <td class="text-center col-md-1">
                         <form action="#" th:action="@{/Modifcontact}" th:object="${contact}" method="post">
                             <input name="id" type="hidden" th:value="${e.getId()}">
@@ -122,8 +126,6 @@
         </div>
     </div>
 </div>
-<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </body>
 </html>

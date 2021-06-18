@@ -8,12 +8,12 @@ public class ContactForm {
     private Long Id;
     private String firstName;
 
-    public ContactForm(Long id, String firstName, String lastName, List<Adresse> adresses, String emailProfessionnel) {
+    public ContactForm(Long id, String firstName, String lastName, List<Adresse> adresses, String emailPersonnel) {
         Id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.adresses = adresses;
-        this.emailProfessionnel = emailProfessionnel;
+        this.emailPersonnel = emailPersonnel;
     }
 
     private String lastName;
@@ -70,6 +70,14 @@ public class ContactForm {
         this.idemailPerso = idemailPerso;
     }
 
+    public ContactForm(Long id, String firstName, String lastName, List<Adresse> adresses, String emailProfessionnel, String emailPersonnel) {
+        Id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adresses = adresses;
+        this.emailProfessionnel = emailProfessionnel;
+        this.emailPersonnel = emailPersonnel;
+    }
 
     public ContactForm(Long id, String firstName, String lastName, List<Adresse> adresses, String emailPersonnel, Long idemailPerso) {
         Id = id;
@@ -86,11 +94,12 @@ public class ContactForm {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    public ContactForm(String firstName, String lastName, List<Adresse> adresses, String emailProfessionnel) {
+
+    public ContactForm(String firstName, String lastName, List<Adresse> adresses, String emailPersonnel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.adresses = adresses;
-        this.emailProfessionnel = emailProfessionnel;
+        this.emailPersonnel = emailPersonnel;
     }
 
     @Override

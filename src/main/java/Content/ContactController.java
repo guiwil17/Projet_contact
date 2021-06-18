@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,8 +50,28 @@ public class ContactController {
     }
 
     @ModelAttribute("liste")
-    public List<Contact> getSomeList(){
-        return contactRepo.findAll();
+    public List<ContactForm> getSomeList(){
+        List<ContactForm> contactform = new ArrayList<>();
+        for (Contact contact:contactRepo.findAll()) {
+            ContactForm cont = new ContactForm(contact.getId(), contact.getFirstName(), contact.getLastName(),contact.getAdresses(), contact.getMailPersonnel().getMail());
+            log.info("la");
+            log.info(contact.getMailPersonnel().getMail());
+            log.info(cont.getEmailProfessionnel());
+
+            if(contact.getMailProfessionnel() != null)
+            {
+                cont.setEmailProfessionnel(contact.getMailProfessionnel().getMail());
+                contactform.add(cont);
+            }
+            else {
+                contactform.add(cont);
+            }
+            log.info(cont.getEmailPersonnel());
+            log.info("ici");
+
+        }
+
+        return contactform;
     }
 
     @ModelAttribute("listeAdresse")
@@ -150,7 +171,7 @@ public class ContactController {
         model.addAttribute("contact", new ContactForm());
         model.addAttribute("contact", contact);
         model.addAttribute("addrs", adresseRepo.findAll());
-        return "contact";
+        return "redirect:/contact";
     }
 
     @GetMapping("/Deletecontact")
@@ -203,6 +224,11 @@ public class ContactController {
         model.addAttribute("adresse", new Adresse());
         return "adresses";
     }
+    @GetMapping("/")
+    public String index(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue = "hello") String fooCookie, HttpServletResponse response) {
+
+        return "index";
+    }
 
     @GetMapping("/adresses/delete")
     public String deleteAdresse(@ModelAttribute Adresse adresse, Model model) {
@@ -226,12 +252,6 @@ public class ContactController {
     @PostMapping("/adresses/modif")
     public String modifAdresse(@ModelAttribute Adresse adresse, Model model) {
         log.info(adresse.toString());
-        /*
-        String f = contact.getFirstName();
-        Integer id = Integer.parseInt(f);
-        contact = contactRepo.findById(id);
-
-         */
         model.addAttribute("adresse", adresse);
         model.addAttribute("modifadresse", new Adresse());
 
