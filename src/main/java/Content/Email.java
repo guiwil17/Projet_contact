@@ -1,40 +1,48 @@
 package Content;
-import Content.Contact;
 
 import javax.persistence.*;
 
 @Entity
 public class Email {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "mail",unique=true)
     public String mail;
 
-    protected Email() {}
+        protected Email() {}
 
 
     public Email(String mail) {
         this.mail = mail;
     }
 
+    public Email(Long id, String mail) {
+        this.id = id;
+        this.mail = mail;
+    }
+
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, mail='%s']",
-                id, mail);
+                "Customer[id='%s',mail='%s']",
+                id,mail);
     }
 
     public Long getId() {
         return id;
     }
 
-
-    public void setEmail(String mail) {
-        this.mail = mail;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getEmail() {
+    public String getMail() {
         return mail;
     }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 }

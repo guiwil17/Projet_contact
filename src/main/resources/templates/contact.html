@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <title>Ma superbe app</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -21,38 +21,54 @@
             </form>
         </div>
     </div>
-    <div class="container mt-5">
-        <form  th:action="@{/Addcontact}" th:object="${contact}" method="post">
-            <div class="row">
+</div>
+<div class="container">
+    <div class="row">
+
+<div th:if="${erreur}">
+    <div class="alert alert-danger mt-3 mb-2" role="alert">
+        L'un des emails ou les deux existent déjà ! Insertion ou modification non fait
+    </div>
+</div>
+    </div>
+</div>
+<div class="container mt-5">
+    <form  th:action="@{/Addcontact}" th:object="${contact}" method="post">
+        <div class="row">
+
 
                 <div class="col">
 
-                    <label for="firstName">Prénom</label>
-                    <input id="firstName" name="firstName" type="text" class="form-control" required>
-                </div>
-                <div class="col">
-                    <label for="lastName">Nom</label>
-                    <input id="lastName" name="lastName" type="text"  class="form-control" required>
-                </div>
-                </br>
-                <div class="col">
-                    <label for="Email">Email</label>
-                    <input id="Email" name="Email" type="text" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="adresses">Adresses</label>
-                    <select class="form-control selectpicker" name="adresses" id="adresses" multiple>
+                <label for="firstName">Prénom</label>
+                <input id="firstName" name="firstName" type="text" class="form-control" required>
+            </div>
+            <div class="col">
+                <label for="lastName">Nom</label>
+                <input id="lastName" name="lastName" type="text"  class="form-control" required>
+            </div>
+            </br>
 
-                        <option th:each="part : ${addrs}"
-                                th:value="${part.id}"
-                                th:text="${part.getTotal}">dip
-                        </option>
+            <div class="col">
+                <label for="emailPersonnel">Email personnel</label>
+                <input id="emailPersonnel" name="emailPersonnel" type="email" class="form-control" required>
+            </div>
+            <div class="col">
+                <label for="emailProfessionnel">Email professionnel</label>
+                <input id="emailProfessionnel" name="emailProfessionnel" type="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="adresses">Adresses</label>
+                <select class="form-control selectpicker" name="adresses" id="adresses" multiple>
 
-                    </select>
-                </div>
+                    <option th:each="part : ${addrs}"
+                            th:value="${part.id}"
+                            th:text="${part.getTotal}">
+                    </option>
+
 
 
                 <div class="text-center">
+
 
                     <button type="submit" class="btn btn-primary text-center mt-4 mb-4" >Ajouter</button>
                 </div>
@@ -105,6 +121,10 @@
             </table>
         </div>
     </div>
+</div>
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </body>
 </html>
+
