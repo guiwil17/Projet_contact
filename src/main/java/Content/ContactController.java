@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.graalvm.compiler.debug.TTY.print;
 
@@ -94,15 +95,21 @@ public class ContactController {
     @PostMapping("/contact")
     public String updateContact(@ModelAttribute ContactForm contactform, Model model) {
         log.info(contactform.toString());
+
+
+
         Email emailPerso = new Email(contactform.getIdemailPerso(),contactform.getEmailPersonnel());
         log.info(emailPerso.toString());
-        Contact contact = new Contact(contactform.getFirstName(), contactform.getLastName(), contactform.getAdresses());
+        Contact contact = new Contact(contactform.getId(),contactform.getFirstName(), contactform.getLastName(), contactform.getAdresses());
 
-        if(contactform.getIdemailPro() != -1L){
-
+        if(contactform.getEmailProfessionnel() != ""){
             Email email = new Email(contactform.getEmailProfessionnel());
+            if(contactform.getIdemailPro() != -1L) {
+                email.setId(contactform.getIdemailPro());
+            }
             contact.setMailProfessionnel(email);
             contact.setMailPersonnel(emailPerso);
+            log.info(email.toString());
             try{
                 emailRepo.save(email);
                 emailRepo.save(emailPerso);

@@ -38,7 +38,12 @@ public class Contact implements Serializable {
     @JoinColumn(name="emailid2")
     private Email mailPersonnel;
 
-
+    public Contact(Long id, String firstName, String lastName, List<Adresse> adresses) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adresses = adresses;
+    }
 
     public Contact(Long id, String firstName, String lastName, List<Adresse> adresses, Email mailProfessionnel, Email mailPersonnel) {
         this.id = id;
