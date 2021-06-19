@@ -18,7 +18,6 @@ public class APIControlleur {
     private OptionAdresse adresseRepo;
     @Autowired
     private EmailRepository emailRepo;
-    private static final Logger log = LoggerFactory.getLogger(ContactData.class);
 
 
     @GetMapping(value="/xml", produces = MediaType.APPLICATION_XML_VALUE)
@@ -109,7 +108,6 @@ public class APIControlleur {
 
     @PostMapping(value="/xml/adresse/add", produces=MediaType.APPLICATION_XML_VALUE)
     public Adresse updateAdresse(@RequestBody Adresse adresse) {
-        log.info(adresse.getTotal());
         return adresse;
     }
 

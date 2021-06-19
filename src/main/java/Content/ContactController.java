@@ -24,7 +24,6 @@ public class ContactController {
     private OptionAdresse adresseRepo;
     @Autowired
     private EmailRepository emailRepo;
-    private static final Logger log = LoggerFactory.getLogger(ContactData.class);
 
     @GetMapping("/contact")
     public String contact(@RequestParam(name="erreur", required=false, defaultValue="false") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
@@ -123,7 +122,6 @@ public class ContactController {
                 contactRepo.save(contact);
             }
             catch (Exception e){
-                log.info(e.toString());
                 return "redirect:/contact?erreur=true";
             }
         }
