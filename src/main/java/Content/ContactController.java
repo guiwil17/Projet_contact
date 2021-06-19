@@ -29,10 +29,7 @@ public class ContactController {
     @GetMapping("/contact")
     public String contact(@RequestParam(name="erreur", required=false, defaultValue="false") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
         model.addAttribute("name", contactRepo.findAll());
-        //Cookie cookie = new Cookie("ddd", contactRepo.findById(2).toString());
-        //response.addCookie(cookie);
         model.addAttribute("addrs", adresseRepo.findAll());
-        log.info(name);
         model.addAttribute("erreur", name);
         model.addAttribute("ContactForm", new ContactForm());
         model.addAttribute("adresse", new Adresse());
@@ -40,13 +37,7 @@ public class ContactController {
     }
     @GetMapping("/login")
     public String login(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
-        model.addAttribute("name", contactRepo.findAll());
-        //Cookie cookie = new Cookie("ddd", contactRepo.findById(2).toString());
-        //response.addCookie(cookie);
-        model.addAttribute("addrs", adresseRepo.findAll());
-        model.addAttribute("contact", new Contact());
-        model.addAttribute("adresse", new Adresse());
-        return "login";
+       return "login";
     }
 
     @ModelAttribute("liste")
@@ -54,9 +45,6 @@ public class ContactController {
         List<ContactForm> contactform = new ArrayList<>();
         for (Contact contact:contactRepo.findAll()) {
             ContactForm cont = new ContactForm(contact.getId(), contact.getFirstName(), contact.getLastName(),contact.getAdresses(), contact.getMailPersonnel().getMail());
-            log.info("la");
-            log.info(contact.getMailPersonnel().getMail());
-            log.info(cont.getEmailProfessionnel());
 
             if(contact.getMailProfessionnel() != null)
             {
@@ -66,8 +54,6 @@ public class ContactController {
             else {
                 contactform.add(cont);
             }
-            log.info(cont.getEmailPersonnel());
-            log.info("ici");
 
         }
 
@@ -81,14 +67,6 @@ public class ContactController {
 
     @PostMapping("/Modifcontact")
     public String modifContact(@ModelAttribute Contact contact, Model model) {
-
-        /*
-        String f = contact.getFirstName();
-        Integer id = Integer.parseInt(f);
-        contact = contactRepo.findById(id);
-
-         */
-
         Long id = contact.getId();
 
        List<Contact> listcontact = contactRepo.findAll();
@@ -99,7 +77,6 @@ public class ContactController {
             }
 
         }
-        log.info(contact.toString());
         ContactForm contactForm = new ContactForm(contact.getId(),contact.getFirstName(), contact.getLastName(), contact.getAdresses(), contact.getMailPersonnel().getMail(), contact.getMailPersonnel().getId());
 
         if (contact.getMailProfessionnel() != null){
@@ -120,12 +97,7 @@ public class ContactController {
 
     @PostMapping("/contact")
     public String updateContact(@ModelAttribute ContactForm contactform, Model model) {
-        log.info(contactform.toString());
-
-
-
         Email emailPerso = new Email(contactform.getIdemailPerso(),contactform.getEmailPersonnel());
-        log.info(emailPerso.toString());
         Contact contact = new Contact(contactform.getId(),contactform.getFirstName(), contactform.getLastName(), contactform.getAdresses());
 
         if(contactform.getEmailProfessionnel() != ""){
@@ -135,21 +107,17 @@ public class ContactController {
             }
             contact.setMailProfessionnel(email);
             contact.setMailPersonnel(emailPerso);
-            log.info(email.toString());
             try{
                 emailRepo.save(email);
                 emailRepo.save(emailPerso);
                 contactRepo.save(contact);
             }
             catch (Exception e){
-                log.info(e.toString());
                 return "redirect:/contact?erreur=true";
             }
         }
         else{
-            log.info("ici");
             contact.setMailPersonnel(emailPerso);
-            log.info(contact.toString());
             try{
                 emailRepo.save(emailPerso);
                 contactRepo.save(contact);
@@ -159,13 +127,8 @@ public class ContactController {
                 return "redirect:/contact?erreur=true";
             }
         }
-        log.info(contact.toString());
 
         List<Email> tot = emailRepo.findAll();
-        for (Email con:
-                tot) {
-            log.info(con.toString());
-        }
 
         model.addAttribute("name", contactRepo.findAll());
         model.addAttribute("contact", new ContactForm());
@@ -182,7 +145,6 @@ public class ContactController {
 
     @PostMapping("/Addcontact")
     public String addContact(@ModelAttribute ContactForm contactform, Model model) {
-        log.info(contactform.toString());
         Email emailPerso = new Email(contactform.getEmailPersonnel());
 
         Contact contact = new Contact(contactform.getFirstName(), contactform.getLastName(), contactform.getAdresses());
@@ -194,25 +156,14 @@ public class ContactController {
         else {
             contact.setMailPersonnel(emailPerso);
         }
-        log.info(emailPerso.toString());
 
-
-        //contact.setMailProfessionnel(email);
 
         try{
         contactRepo.save(contact);
     }
         catch (Exception e){
-        log.info(e.toString());
             return "redirect:/contact?erreur=true";
     }
-        log.info(contact.toString());
-
-        List<Contact> tot = contactRepo.findAll();
-        for (Contact con:
-             tot) {
-            log.info(con.toString());
-        }
 
         return "redirect:/contact";
 
@@ -232,7 +183,6 @@ public class ContactController {
 
     @GetMapping("/adresses/delete")
     public String deleteAdresse(@ModelAttribute Adresse adresse, Model model) {
-        log.info(adresse.toString());
         adresseRepo.delete(adresse);
         return "redirect:/adresses";
     }
@@ -251,7 +201,6 @@ public class ContactController {
 
     @PostMapping("/adresses/modif")
     public String modifAdresse(@ModelAttribute Adresse adresse, Model model) {
-        log.info(adresse.toString());
         model.addAttribute("adresse", adresse);
         model.addAttribute("modifadresse", new Adresse());
 
