@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface OptionContact extends CrudRepository<Contact, Long> {
+public interface ContactRepository extends CrudRepository<Contact, Long> {
 
     List<Contact> findByLastName(String lastName);
 

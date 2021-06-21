@@ -1,9 +1,6 @@
 package Content;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,16 +9,15 @@ import javax.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@Controller
+@org.springframework.stereotype.Controller
 @SessionAttributes("valueSession2")
-public class ContactController {
+public class Controller {
 
     @Autowired
-    private OptionContact contactRepo;
+    private ContactRepository contactRepo;
     @Autowired
-    private OptionAdresse adresseRepo;
+    private AdresseRepository adresseRepo;
     @Autowired
     private EmailRepository emailRepo;
 
@@ -30,7 +26,7 @@ public class ContactController {
         model.addAttribute("name", contactRepo.findAll());
         model.addAttribute("addrs", adresseRepo.findAll());
         model.addAttribute("erreur", name);
-        model.addAttribute("ContactForm", new ContactForm());
+        model.addAttribute("ContactForm", new ContactForm()); // Permet la gestion de la création d'un contact avec des adresse mails. Un contact et une ou plusieurs adresses mails seront générer lors de l'ajout ou la modification du contact
         model.addAttribute("adresse", new Adresse());
         return "contact";
     }

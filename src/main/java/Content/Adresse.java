@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 public class Adresse {
+    //Initialisation des variables
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
