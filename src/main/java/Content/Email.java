@@ -26,7 +26,7 @@ public class Email {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id='%s',mail='%s']",
+                "Email[id='%s',mail='%s']",
                 id,mail);
     }
 

@@ -26,7 +26,7 @@ public class APIControlleur {
     //Génération de la liste de contact
     @GetMapping(value="/xml/contact", produces = MediaType.APPLICATION_XML_VALUE)
     @ResponseBody
-    public List<Contact> findCities() {
+    public List<Contact> findContact() {
         return contactRepo.findAll();
     }
 
@@ -114,8 +114,10 @@ public class APIControlleur {
         return adresse;
     }
 
+
     // Email
     // Génération des emails
+
     @GetMapping(value="/xml/email", produces = MediaType.APPLICATION_XML_VALUE)
     @ResponseBody
     public List<Email> findEmails() {
