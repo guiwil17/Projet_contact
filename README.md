@@ -10,5 +10,4 @@
 - Lancer l'application
 - S'amuser avec notre superbe application de contact :) 
 
-PS: Pour ce log -> identifiant = user
-                -> mot de passe = password
+PS: Pour ce log -> identifiant = user /  mot de passe = password               
