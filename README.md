@@ -24,6 +24,10 @@ Pour se connecter -> identifiant = user /  mot de passe = password
 - localhost:8080/xml/adresse/{id} (adresse choisit)
 - localhost:8080/xml/email/{id} (email choisit)
 
+- localhost:8080/xml/contact/delete/{id} (suppression contact choisit)
+- localhost:8080/xml/adresse/delete/{id} (suppression adresse choisit)
+- localhost:8080/xml/email/delete/{id} (suppression email choisit)
+
 PS : N'hésitez pas à tester notre page 404 en changeant l'url par n'importe quoi après vous être authentifié
 
 
