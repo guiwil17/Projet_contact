@@ -7,7 +7,7 @@
 
 - Pull le projet
 - Lancer le build.graddle
-- Lancer l'application
+- Lancer l'application via le fichier main
 - S'amuser avec notre superbe application de contact :) 
 
 Pour se connecter -> identifiant = user /  mot de passe = password               
