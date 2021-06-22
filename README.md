@@ -1,7 +1,7 @@
 # Projet_contact
 
 ## Créé par Quentin HENAUX et Guillaume SOL
-## Projet Scolaire
+### Projet Scolaire
 
 ## Comment utiliser notre code ?
 
