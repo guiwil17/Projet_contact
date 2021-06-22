@@ -14,6 +14,8 @@ Pour se connecter -> identifiant = user /  mot de passe = password
 
 ## Utilisation de l'API 
 
+- localhost:8080/xml (Message de bienvenue, ne s'affiche pas via le navigateur mais ce voit via postman par exemple)
+- 
 - localhost:8080/xml/contact (liste des contacts)
 - localhost:8080/xml/adresse (liste des adresses)
 - localhost:8080/xml/email (liste des adresses emails)
