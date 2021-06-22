@@ -33,8 +33,8 @@
                     <input id="emailPersonnel" name="emailPersonnel" type="email" class="form-control"  th:value="${contact.getEmailPersonnel()}" required>
                 </div>
                 <div class="col">
-                    <label for="emailProfessionnel">Nom</label>
-                    <input name="emailProfessionnel"  id="emailProfessionnel" type="email"  class="form-control" placeholder="Nom de famille" th:value="${contact.getEmailProfessionnel()}">
+                    <label for="emailProfessionnel">Email Professionnel</label>
+                    <input name="emailProfessionnel"  id="emailProfessionnel" type="email"  class="form-control" placeholder="Email Professionnel" th:value="${contact.getEmailProfessionnel()}">
                 </div>
                 <select class="form-control" id="adresses" name="adresses" multiple="multiple">
                     <option th:each="part : ${addrs}"
