@@ -21,6 +21,11 @@ public class Controller {
     @Autowired
     private EmailRepository emailRepo;
 
+    @GetMapping("/error")
+    public String error(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
+     return "error";
+    }
+
     @GetMapping("/contact")
     public String contact(@RequestParam(name="erreur", required=false, defaultValue="false") String name, Model model, HttpSession session, @CookieValue(value = "foo", defaultValue="World") String fooCookie, HttpServletResponse response) {
         model.addAttribute("name", contactRepo.findAll());
