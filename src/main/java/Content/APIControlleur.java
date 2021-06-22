@@ -59,20 +59,7 @@ public class APIControlleur {
         return contactRepo.findAll();
     }
 
-    // Ajout du contact
-    @PostMapping(value="/xml/contact/add", produces=MediaType.APPLICATION_XML_VALUE)
-    public Contact updateContact(@RequestParam(name="id", required=true) Long id, @RequestParam(name="FirstName", required=true) String FirstName, @RequestParam(name="LastName", required=true) String LastName, @RequestParam(name="Adresses", required=false) String Adresses) {
-        List <Contact> listContact =  contactRepo.findAll();
-        for (Contact contact:
-                listContact) {
-            if(contact.getId() == id){
-                return contact;
-            }
-
-        }
-        return new Contact();
-    }
-
+    
     //Adresse
     // Génération de la liste d'adresse
     @GetMapping(value="/xml/adresse", produces = MediaType.APPLICATION_XML_VALUE)
