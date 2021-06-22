@@ -10,4 +10,8 @@
 - Lancer l'application
 - S'amuser avec notre superbe application de contact :) 
 
-PS: Pour ce log -> identifiant = user /  mot de passe = password               
+Pour se connecter -> identifiant = user /  mot de passe = password               
+
+PS : N'hésitez pas à tester notre page 404 en changeant l'url par n'importe quoi après vous être authentifié
+
+
